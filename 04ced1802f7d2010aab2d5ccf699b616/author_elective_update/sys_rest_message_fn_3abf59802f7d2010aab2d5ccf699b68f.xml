@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="DELETE">
+        <authentication_type>oauth2</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>GET all incidents</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile display_value="Sentinel API profile">bdab6dc82f7d2010aab2d5ccf699b684</oauth2_profile>
+        <protocol_name/>
+        <qualified_name>Get Sentinel incidents [ GET all incidents ]</qualified_name>
+        <rest_endpoint>https://management.azure.com/subscriptions/${subscription}/resourceGroups/${rg}/providers/Microsoft.OperationalInsights/workspaces/${workspace}/providers/${providers}</rest_endpoint>
+        <rest_message display_value="Get Sentinel incidents">9f1f59802f7d2010aab2d5ccf699b678</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 10:08:53</sys_created_on>
+        <sys_id>3abf59802f7d2010aab2d5ccf699b68f</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>GET all incidents</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_rest_message_fn_3abf59802f7d2010aab2d5ccf699b68f</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 11:03:32</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</application>
+        <file_path/>
+        <instance_id>7c9ad04ddb34cf0852e3f70fbf96197c</instance_id>
+        <instance_name>dev43601</instance_name>
+        <name>sys_rest_message_fn_3abf59802f7d2010aab2d5ccf699b68f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn"><sys_rest_message_fn action="INSERT_OR_UPDATE"><authentication_type>oauth2</authentication_type><basic_auth_password/><basic_auth_profile/><basic_auth_user/><content/><function_name>GET all incidents</function_name><http_method>get</http_method><lock>false</lock><oauth2_profile display_value="Sentinel API profile">bdab6dc82f7d2010aab2d5ccf699b684</oauth2_profile><protocol_name/><qualified_name>Get Sentinel incidents [ GET all incidents ]</qualified_name><rest_endpoint>https://management.azure.com/subscriptions/${subscription}/resourceGroups/${rg}/providers/Microsoft.OperationalInsights/workspaces/${workspace}/providers/${providers}</rest_endpoint><rest_message display_value="Get Sentinel incidents">9f1f59802f7d2010aab2d5ccf699b678</rest_message><sys_class_name>sys_rest_message_fn</sys_class_name><sys_created_by>sebmolendijk@hotmail.com</sys_created_by><sys_created_on>2021-01-14 10:08:53</sys_created_on><sys_id>3abf59802f7d2010aab2d5ccf699b68f</sys_id><sys_mod_count>4</sys_mod_count><sys_name>GET all incidents</sys_name><sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package><sys_policy/><sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope><sys_update_name>sys_rest_message_fn_3abf59802f7d2010aab2d5ccf699b68f</sys_update_name><sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by><sys_updated_on>2021-01-14 11:03:32</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mid_server/><use_mutual_auth>false</use_mutual_auth></sys_rest_message_fn></record_update>]]></payload>
+        <payload_hash>1589427919</payload_hash>
+        <record_name>GET all incidents</record_name>
+        <reverted_from/>
+        <source>44ced1802f7d2010aab2d5ccf699b618</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 11:03:32</sys_created_on>
+        <sys_id>5b3c6d0c2f7d2010aab2d5ccf699b67d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1770090996d0000001</sys_recorded_at>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 11:03:32</sys_updated_on>
+        <type>HTTP Method</type>
+        <update_guid>d33c6d0c737d20106ac6bb66ba7d2a7d</update_guid>
+        <update_guid_history>d33c6d0c737d20106ac6bb66ba7d2a7d:1589427919,3252e904dd7d20109073e17f5af9b686:1725004829,c6c16504767d201079cd999f72ab29de:2053628600,0c81a104ee7d201081fb2a3c0c806cda:1441257651,f6bf59807c7d2010781b7c97e0d10a91:-1916390188</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 10:17:23</sys_created_on>
+        <sys_db_object display_value="" name="sys_rest_message_fn">sys_rest_message_fn</sys_db_object>
+        <sys_id>59baf90b2de14fcebb444e960f748f24</sys_id>
+        <sys_metadata>3abf59802f7d2010aab2d5ccf699b68f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GET all incidents</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_scope_delete display_value="">078ab734c9c1414681b285abb723e544</sys_scope_delete>
+        <sys_update_name>sys_rest_message_fn_3abf59802f7d2010aab2d5ccf699b68f</sys_update_name>
+        <sys_update_version display_value="sys_rest_message_fn_3abf59802f7d2010aab2d5ccf699b68f">5b3c6d0c2f7d2010aab2d5ccf699b67d</sys_update_version>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 10:17:23</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

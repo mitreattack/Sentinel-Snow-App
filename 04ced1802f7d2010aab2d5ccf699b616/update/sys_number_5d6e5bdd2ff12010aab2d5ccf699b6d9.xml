@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="x_556309_microsoft_systemutils">x_556309_microsoft_systemutils</category>
+        <maximum_digits>7</maximum_digits>
+        <number>100</number>
+        <prefix>AZSE</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-18 16:34:42</sys_created_on>
+        <sys_id>5d6e5bdd2ff12010aab2d5ccf699b6d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AZSE</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_number_5d6e5bdd2ff12010aab2d5ccf699b6d9</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-18 16:34:42</sys_updated_on>
+    </sys_number>
+</record_update>

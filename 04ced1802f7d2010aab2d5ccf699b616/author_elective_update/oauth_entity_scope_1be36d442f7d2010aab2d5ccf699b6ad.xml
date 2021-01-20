@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_scope">
+    <oauth_entity_scope action="DELETE">
+        <in_default_profile>false</in_default_profile>
+        <name>Sentinel Management API</name>
+        <oauth_entity display_value="Az Sentinel OAuth app">43e3e9042f7d2010aab2d5ccf699b6d5</oauth_entity>
+        <oauth_entity_scope>https://management.azure.com</oauth_entity_scope>
+        <sys_class_name>oauth_entity_scope</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 10:41:21</sys_created_on>
+        <sys_id>1be36d442f7d2010aab2d5ccf699b6ad</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Sentinel Management API</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>oauth_entity_scope_1be36d442f7d2010aab2d5ccf699b6ad</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 10:51:41</sys_updated_on>
+    </oauth_entity_scope>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</application>
+        <file_path/>
+        <instance_id>7c9ad04ddb34cf0852e3f70fbf96197c</instance_id>
+        <instance_name>dev43601</instance_name>
+        <name>oauth_entity_scope_1be36d442f7d2010aab2d5ccf699b6ad</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_scope"><oauth_entity_scope action="INSERT_OR_UPDATE"><in_default_profile>false</in_default_profile><name>Sentinel Management API</name><oauth_entity display_value="Az Sentinel OAuth app">43e3e9042f7d2010aab2d5ccf699b6d5</oauth_entity><oauth_entity_scope>https://management.azure.com</oauth_entity_scope><sys_class_name>oauth_entity_scope</sys_class_name><sys_created_by>sebmolendijk@hotmail.com</sys_created_by><sys_created_on>2021-01-14 10:41:21</sys_created_on><sys_id>1be36d442f7d2010aab2d5ccf699b6ad</sys_id><sys_mod_count>2</sys_mod_count><sys_name>Sentinel Management API</sys_name><sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package><sys_policy/><sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope><sys_update_name>oauth_entity_scope_1be36d442f7d2010aab2d5ccf699b6ad</sys_update_name><sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by><sys_updated_on>2021-01-14 10:51:41</sys_updated_on></oauth_entity_scope></record_update>]]></payload>
+        <payload_hash>-1146507127</payload_hash>
+        <record_name>Sentinel Management API</record_name>
+        <reverted_from/>
+        <source>44ced1802f7d2010aab2d5ccf699b618</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 10:51:41</sys_created_on>
+        <sys_id>f98969882f7d2010aab2d5ccf699b6f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1770085c1e70000001</sys_recorded_at>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 10:51:41</sys_updated_on>
+        <type>OAuth Entity Scope</type>
+        <update_guid>75896988627d20108a73c85dfcc6a0f7</update_guid>
+        <update_guid_history>75896988627d20108a73c85dfcc6a0f7:-1146507127,fe09e948bb7d201007ae334344907de3:547541962,42276d08047d2010209aa905be14b589:217842452</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Sentinel Management API">167ae9c82f7d2010aab2d5ccf699b65f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 10:55:49</sys_created_on>
+        <sys_db_object display_value="" name="oauth_entity_scope">oauth_entity_scope</sys_db_object>
+        <sys_id>0f3a70616da6484d81166dddcedd8f71</sys_id>
+        <sys_metadata>1be36d442f7d2010aab2d5ccf699b6ad</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Sentinel Management API</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_scope_delete display_value="">078ab734c9c1414681b285abb723e544</sys_scope_delete>
+        <sys_update_name>oauth_entity_scope_1be36d442f7d2010aab2d5ccf699b6ad</sys_update_name>
+        <sys_update_version display_value="oauth_entity_scope_1be36d442f7d2010aab2d5ccf699b6ad">f98969882f7d2010aab2d5ccf699b6f7</sys_update_version>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 10:55:49</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
