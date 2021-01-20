@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Sentinel API properties">9f2716082ffd2010aab2d5ccf699b69f</category>
+        <order>1</order>
+        <property display_value="x_556309_microsoft.resourceGroup" name="x_556309_microsoft.resourceGroup">65fa96482ffd2010aab2d5ccf699b67b</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-14 14:29:35</sys_created_on>
+        <sys_id>9c4b12c82ffd2010aab2d5ccf699b6fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_556309_microsoft.resourceGroup.Sentinel API properties</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_9c4b12c82ffd2010aab2d5ccf699b6fa</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-14 14:29:35</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

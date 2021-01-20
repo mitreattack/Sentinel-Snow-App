@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="sentinelUtils" max_length="40" name="x_556309_microsoft_systemutils" sizeclass="2" type="collection">
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Property" max_length="40" name="property" type="string"/>
+        <element label="Value" max_length="40" name="value" type="string"/>
+    </element>
+</database>

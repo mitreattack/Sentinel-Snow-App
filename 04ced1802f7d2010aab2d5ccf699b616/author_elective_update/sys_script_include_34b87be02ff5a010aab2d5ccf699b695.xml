@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_556309_microsoft.getAccessToken</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Function used to get an access token for the Azure Sentinel API</description>
+        <name>getAccessToken</name>
+        <script><![CDATA[//---------------------------------------------------------------
+// Request access token using the saved application OAuth application
+function getAccessToken () {
+    var oAuthClient = new sn_auth.GlideOAuthClient();
+    var params = {grant_type:"client_credentials",resource:"https://management.azure.com/"};
+    var tokenResponse = oAuthClient.requestToken('Az Sentinel OAuth app',global.JSON.stringify(params));
+    return tokenResponse.getToken();
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 10:34:46</sys_created_on>
+        <sys_id>34b87be02ff5a010aab2d5ccf699b695</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>getAccessToken</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_script_include_34b87be02ff5a010aab2d5ccf699b695</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 10:34:46</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</application>
+        <file_path/>
+        <instance_id>7c9ad04ddb34cf0852e3f70fbf96197c</instance_id>
+        <instance_name>dev43601</instance_name>
+        <name>sys_script_include_34b87be02ff5a010aab2d5ccf699b695</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_556309_microsoft.getAccessToken&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;Function used to get an access token for the Azure Sentinel API&lt;/description&gt;&lt;name&gt;getAccessToken&lt;/name&gt;&lt;script&gt;&lt;![CDATA[//---------------------------------------------------------------
+// Request access token using the saved application OAuth application
+function getAccessToken () {
+    var oAuthClient = new sn_auth.GlideOAuthClient();
+    var params = {grant_type:"client_credentials",resource:"https://management.azure.com/"};
+    var tokenResponse = oAuthClient.requestToken('Az Sentinel OAuth app',global.JSON.stringify(params));
+    return tokenResponse.getToken();
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;sebmolendijk@hotmail.com&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-01-16 10:34:46&lt;/sys_created_on&gt;&lt;sys_id&gt;34b87be02ff5a010aab2d5ccf699b695&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;getAccessToken&lt;/sys_name&gt;&lt;sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft"&gt;04ced1802f7d2010aab2d5ccf699b616&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Microsoft Azure Sentinel"&gt;04ced1802f7d2010aab2d5ccf699b616&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_34b87be02ff5a010aab2d5ccf699b695&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;sebmolendijk@hotmail.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-01-16 10:34:46&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-706296395</payload_hash>
+        <record_name>getAccessToken</record_name>
+        <reverted_from/>
+        <source>44ced1802f7d2010aab2d5ccf699b618</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 10:34:46</sys_created_on>
+        <sys_id>99d8b3602ff5a010aab2d5ccf699b671</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1770ac2fd360000001</sys_recorded_at>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 10:34:46</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>d1d8b3607ff5a010d964e477a98d1771</update_guid>
+        <update_guid_history>d1d8b3607ff5a010d964e477a98d1771:-706296395</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 11:19:31</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>084c8a87e5cb4b868b2d72bc783b7084</sys_id>
+        <sys_metadata>34b87be02ff5a010aab2d5ccf699b695</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>getAccessToken</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_scope_delete display_value="">078ab734c9c1414681b285abb723e544</sys_scope_delete>
+        <sys_update_name>sys_script_include_34b87be02ff5a010aab2d5ccf699b695</sys_update_name>
+        <sys_update_version display_value="sys_script_include_34b87be02ff5a010aab2d5ccf699b695">99d8b3602ff5a010aab2d5ccf699b671</sys_update_version>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 11:19:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

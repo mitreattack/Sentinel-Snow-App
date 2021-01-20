@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description/>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_556309_microsoft.testendpoint</name>
+        <read_roles/>
+        <suffix>testendpoint</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 06:51:09</sys_created_on>
+        <sys_id>fe354fec2f35a010aab2d5ccf699b6a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_556309_microsoft.testendpoint</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_properties_fe354fec2f35a010aab2d5ccf699b6a5</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 06:51:09</sys_updated_on>
+        <type>string</type>
+        <value>https://management.azure.com/subscriptions/674bca0a-b6ce-4991-9c75-82ef14b0360d/resourceGroups/security/providers/Microsoft.OperationalInsights/workspaces/DemoSecurityLogs/providers/Microsoft.SecurityInsights/incidents?api-version=2020-01-01&amp;$filter=(properties/status eq 'New' and properties/labels/any(i:i/labelName eq 'Test'))</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=fe354fec2f35a010aab2d5ccf699b6a5"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</application>
+        <file_path/>
+        <instance_id>7c9ad04ddb34cf0852e3f70fbf96197c</instance_id>
+        <instance_name>dev43601</instance_name>
+        <name>sys_properties_fe354fec2f35a010aab2d5ccf699b6a5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description/><ignore_cache>false</ignore_cache><is_private>false</is_private><name>x_556309_microsoft.testendpoint</name><read_roles/><suffix>testendpoint</suffix><sys_class_name>sys_properties</sys_class_name><sys_created_by>sebmolendijk@hotmail.com</sys_created_by><sys_created_on>2021-01-16 06:51:09</sys_created_on><sys_id>fe354fec2f35a010aab2d5ccf699b6a5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_556309_microsoft.testendpoint</sys_name><sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package><sys_policy/><sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope><sys_update_name>sys_properties_fe354fec2f35a010aab2d5ccf699b6a5</sys_update_name><sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by><sys_updated_on>2021-01-16 06:51:09</sys_updated_on><type>string</type><value>https://management.azure.com/subscriptions/674bca0a-b6ce-4991-9c75-82ef14b0360d/resourceGroups/security/providers/Microsoft.OperationalInsights/workspaces/DemoSecurityLogs/providers/Microsoft.SecurityInsights/incidents?api-version=2020-01-01&amp;$filter=(properties/status eq 'New' and properties/labels/any(i:i/labelName eq 'Test'))</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=fe354fec2f35a010aab2d5ccf699b6a5"/></record_update>]]></payload>
+        <payload_hash>-1199793938</payload_hash>
+        <record_name>x_556309_microsoft.testendpoint</record_name>
+        <reverted_from/>
+        <source>44ced1802f7d2010aab2d5ccf699b618</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 06:51:11</sys_created_on>
+        <sys_id>8ea583202f75a010aab2d5ccf699b613</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17709f648cf0000001</sys_recorded_at>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 06:51:11</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>42a583203775a0100b4cd0d182e15113</update_guid>
+        <update_guid_history>42a583203775a0100b4cd0d182e15113:-1199793938</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-16 07:14:46</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>012f21fff19648ccb92b74bfa356c310</sys_id>
+        <sys_metadata>fe354fec2f35a010aab2d5ccf699b6a5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_556309_microsoft.testendpoint</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_scope_delete display_value="">078ab734c9c1414681b285abb723e544</sys_scope_delete>
+        <sys_update_name>sys_properties_fe354fec2f35a010aab2d5ccf699b6a5</sys_update_name>
+        <sys_update_version display_value="sys_properties_fe354fec2f35a010aab2d5ccf699b6a5">8ea583202f75a010aab2d5ccf699b613</sys_update_version>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-16 07:14:46</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
