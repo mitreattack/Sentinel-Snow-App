@@ -5,7 +5,7 @@
         <condition/>
         <conditional>false</conditional>
         <entered_time>1970-01-01 00:00:00</entered_time>
-        <name>getNewIncidents</name>
+        <name>createNewIncidents</name>
         <offset/>
         <offset_type/>
         <run_as display_value="Seb Molendijk">6816f79cc0a8016401c5a33be04be441</run_as>
@@ -66,20 +66,25 @@ function createIncidents (incidents) {
             else {
                 myObj.assigned_to = incidents[i].properties.owner.userPrincipalName;
             }
-
-
+            
+            // Correlation id is used to link the SNOW incident to Sentinel incident
             myObj.correlation_id = incidents[i].name;
             myObj.caller_id = callerId;
             
-            // record contains the snow incident id
-            var record = myObj.insert();
+            // record contains the snow incident id and incident is saved in the database
+            try {
+                var record = myObj.insert();
+                createdIncidents++;
+            }
+            catch(ex) {
+                var message = ex.message;
+                log('ERROR inserting incident: ' + message);
+            }
 
-            // add tag and comments to Sentinel
-            createdIncidents++;
-
+            // Add Sentinel incident url link in work notes
             myObj = new GlideRecord('incident');
             myObj.get(record);
-            myObj.work_notes = "[code]<a href='" + incidents[i].properties.incidentUrl + "' target='_blank'>Azure Sentinel Incident link</a>[/code]";
+            myObj.work_notes = "[code]<a href='" + incidents[i].properties.incidentUrl + "' target='_blank'>Azure Sentinel incident link</a>[/code]";
             myObj.update();
 
             //Add Sentinel comments to work notes
@@ -91,6 +96,31 @@ function createIncidents (incidents) {
                 });
 
             }
+
+            // Adds ServiceNow incident number in Sentinel tags
+            var labelIncidentId = [{
+                "labelName": myObj.number.toString(),
+                "labelType": "User"
+            }];
+            var properties = incidents[i].properties;
+			
+            properties.labels = labelIncidentId;
+			var codeTag = updateSentinelIncident(incidents[i].name, properties);
+            log('Adding tag code: ' + codeTag);
+            
+            // Adds SNOW incident link in Sentinel
+            try {
+                var incidentUrl = createUrlForObject('incident', record);
+                var msg = '<p>(Work notes)</p>' + incidentUrl;
+                var httpStatus = addIncidentComments(incidents[i].name, msg);
+                if(httpStatus != 201) {
+                    log('ERROR: incident ' + myObj.number  + '\n' + httpStatus + ' - Comment not added to Sentinel\n' + msg);
+                }
+            }
+            catch (ex) {
+                var message = ex.message;
+                log('ERROR adding SNOW incident link to Sentinel: ' + message);
+            }
             
         }
 
@@ -100,14 +130,18 @@ function createIncidents (incidents) {
 
 }
 
+// Creates an url to the created ServiceNow record
+function createUrlForObject(table_name, sys_id){
+    var url = gs.getProperty('glide.servlet.uri') + 'nav_to.do?uri=%2F' + table_name + '.do?sys_id=' + sys_id;
+    return "<a href=" +  url + ">ServiceNow incident link</a>";
+}
+
+//---------------------------------------------------------------
+    // 
 
 try {
 
-    //---------------------------------------------------------------
-    // Main
-    
-    // Get new incidents from Azure Sentinel API 
-    //var incidents = getSentinelIncidents('a4588555-295b-4c8b-9cdc-b17c5126bb7c');
+    // Get new incidents from Azure Sentinel API
     var incidents = getSentinelIncidents();
     
     log('Azure Sentinel API returned ' + incidents.length + ' new incidents.');
@@ -119,20 +153,20 @@ try {
 }
 catch (ex) {
     var message = ex.message;
-    gs.info('ERROR: ' + message);
+    log('ERROR main: ' + message);
 }]]></script>
         <sys_class_name>sysauto_script</sys_class_name>
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-14 11:22:24</sys_created_on>
         <sys_id>531e258c2f7d2010aab2d5ccf699b6f3</sys_id>
-        <sys_mod_count>219</sys_mod_count>
-        <sys_name>getNewIncidents</sys_name>
+        <sys_mod_count>276</sys_mod_count>
+        <sys_name>createNewIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_531e258c2f7d2010aab2d5ccf699b6f3</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-19 20:43:33</sys_updated_on>
+        <sys_updated_on>2021-01-21 20:34:07</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
