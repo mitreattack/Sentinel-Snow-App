@@ -103,10 +103,8 @@ function createIncidents (incidents) {
                 "labelType": "User"
             }];
             var properties = incidents[i].properties;
-			
             properties.labels = labelIncidentId;
-			var codeTag = updateSentinelIncident(incidents[i].name, properties);
-            log('Adding tag code: ' + codeTag);
+            updateSentinelIncident(incidents[i].name, properties);
             
             // Adds SNOW incident link in Sentinel
             try {
@@ -137,18 +135,20 @@ function createUrlForObject(table_name, sys_id){
 }
 
 //---------------------------------------------------------------
-    // 
-
+    // Main
 try {
 
-    // Get new incidents from Azure Sentinel API
+    // Get all new incidents from Azure Sentinel API
     var incidents = getSentinelIncidents();
-    
+    updateLastSync('newIncidentsLastSync');
+
     log('Azure Sentinel API returned ' + incidents.length + ' new incidents.');
 
-    // Create new incidents in SNOW
-    var createdIncidents = createIncidents(incidents);
-    log('New incident created: ' + createdIncidents);
+    if(incidents.length > 0){
+        // Create new incidents in SNOW
+        var createdIncidents = createIncidents(incidents);
+        log('New incident created: ' + createdIncidents);
+    }
 
 }
 catch (ex) {
@@ -159,14 +159,14 @@ catch (ex) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-14 11:22:24</sys_created_on>
         <sys_id>531e258c2f7d2010aab2d5ccf699b6f3</sys_id>
-        <sys_mod_count>276</sys_mod_count>
+        <sys_mod_count>279</sys_mod_count>
         <sys_name>createNewIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_531e258c2f7d2010aab2d5ccf699b6f3</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-21 20:34:07</sys_updated_on>
+        <sys_updated_on>2021-01-22 16:26:00</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
