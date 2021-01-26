@@ -31,32 +31,81 @@
         <rest_service_text/>
         <rest_variables/>
         <role_conditions/>
-        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+        <script><![CDATA[(function executeRule(current, previous) {
 
     try {
-            /*var msg = current.work_notes.getJournalEntry(1);
-            //Filtering out Sentinel incidents already added to work notes 
-            if((msg.toLowerCase().indexOf('createdtimeutc:') === -1) && (msg.toLowerCase().indexOf('[code]:') === -1)) {
-                var httpStatus = addIncidentComments(current.correlation_id, msg);
-                if(httpStatus != 201) {
-                    log('ERROR: incident ' + current.number  + '\n' + httpStatus + ' - Comment not added to Sentinel\n' + msg);
+            var myObj = current;
+            var incident = getSentinelIncidents(myObj.correlation_id);
+            var changes = compareChanges(incident[0].properties, myObj); //changes is an object with all changes
+            var properties = incident[0].properties;
+            
+            if (Object.keys(changes).length > 0) { //if at least one change
+
+                if(changes.hasOwnProperty('severitySentinel')) { //status must be updated in Sentinel
+
+                    switch(myObj.impact.toString()) {
+                        case '3': 
+                            properties.severity = 'Low'; 
+                            break;
+                        case '2': 
+                            properties.severity = 'Medium'; 
+                            break;
+                        case '1': 
+                            properties.severity = 'High'; 
+                            break;
+                        default: 
+                            properties.severity = 'Medium'; 
+                            break;
+                    }
+
+                    
                 }
-    
-            }*/
-            var myObj = current; //used in case of conflict at update time
-            var incident = getSentinelIncidents(current.correlation_id);
-            log('in business rule: ' + JSON.stringify(current.correlation_id + '\nSetinel incident: ' + incident.properties.incidentNumber));
-            var changes = compareChanges(incident.properties, myObj);
-            log('Sentinel Incident ' + incident.properties.incidentNumber + ' has been updated after snow update\nChanges: ' + JSON.stringify(changes));
+                
+                if(changes.hasOwnProperty('statusSentinel')) { //severity must be updated in Sentinel
+                    switch(myObj.state.toString()) {
+                        case '1': 
+                            properties.status = 'New'; 
+                            break;
+                        case '2': 
+                            properties.status = 'Active'; 
+                            break;
+                        case '6': { 
+                                    properties.status = 'Closed'; 
+                                    properties.classification = 'Undetermined';
+                                    properties.classificationComment = 'Incident marked as Resolved in ServiceNow';
+                                    break;                
+                                }
+                        case '7': { 
+                                    properties.status = 'Closed';
+                                    properties.classification = 'Undetermined';
+                                    properties.classificationComment = 'Incident marked as Closed in ServiceNow';
+                                    log('Code: ' + myObj.close_code + '\nReason: ' + myObj.close_notes + 'Obj:\n' + JSON.stringify(myObj));
+                                    break;                
+                        }
+                        default: 
+                            properties.status = 'Active';
+                            break;
+                    }
+                }
+                
+                if(changes.hasOwnProperty('ownerSentinel')) { //owner must be updated in Sentinel
+                    properties.owner.userPrincipalName = myObj.assigned_to.email.toString();
+                }
+                var httpStatus = updateSentinelIncident(myObj.correlation_id, properties);
 
+                if(httpStatus == 200) {
+                    log('Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                }
+                else {
+                    log('Sentinel Incident ' + incident[0].properties.incidentNumber + ' update fails. Code: ' + httpStatus + '\nChanges: ' + JSON.stringify(changes));
+                }
 
-            
+            }
 
-            
     }
     catch (ex) {
         var message = ex.message;
-        log('ERROR: ' + message);
+        log('ERROR updating incident ' + current.number + ' - ' + message);
             }
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -65,7 +114,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e7d30a172f392410aab2d5ccf699b6ed</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>update_changes_to_sentinel</sys_name>
         <sys_overrides/>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
@@ -73,7 +122,7 @@
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_e7d30a172f392410aab2d5ccf699b6ed</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-24 18:33:51</sys_updated_on>
+        <sys_updated_on>2021-01-26 09:43:34</sys_updated_on>
         <template/>
         <when>async</when>
     </sys_script>

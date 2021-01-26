@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_556309_microsoft.getIncidentEntities</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>getIncidentEntities</name>
+        <script><![CDATA[
+//---------------------------------------------------------------
+// Get entities to incident
+function getIncidentEntities (incidentId) {
+
+    var hasNext = false;
+    var filter = null;
+    var entities = [];
+
+    // Prepare request
+    incidentId = incidentId + '/entities';
+    var pagedRequest = buildRESTMessageV2(null, 'post', filter, incidentId);
+
+    do {    
+        // Request Sentinel incidents
+        var pagedResponse = pagedRequest.execute();
+        var pagedResponseBody = pagedResponse.getBody();
+        var pagedhttpStatus = pagedResponse.getStatusCode();
+        var pagedObj = JSON.parse(pagedResponseBody);
+
+        if(pagedhttpStatus == 200) {
+            
+            entities = entities.concat(pagedObj.entities);
+        }
+        else {
+            log('Error code: ' + pagedhttpStatus + '\nMessage:\n' + pagedResponseBody);
+        }
+
+
+        if (pagedObj['nextLink']) { // if true, more incidents available
+
+            hasNext = true;
+            var skip = getSkipToken(pagedObj['nextLink']);
+            pagedRequest = buildRESTMessageV2(skip, 'post', filter, incidentId); 
+        }
+        else {
+            hasNext = false;
+        }
+
+    }while (hasNext);
+    
+    // Compose entities objects
+    var entitiesList = entities.map(function(entity) {
+       return {
+           "type": entity.kind,
+           "details": entity.properties
+       };
+    });
+
+    return entitiesList;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-26 13:43:20</sys_created_on>
+        <sys_id>e5c3ccc42f822010aab2d5ccf699b638</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>getIncidentEntities</sys_name>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_script_include_e5c3ccc42f822010aab2d5ccf699b638</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-26 16:09:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

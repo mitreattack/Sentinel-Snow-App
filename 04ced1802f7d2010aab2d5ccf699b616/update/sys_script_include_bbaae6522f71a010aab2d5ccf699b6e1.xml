@@ -13,12 +13,16 @@ function updateSentinelIncident (incidentId, properties) {
     
     var incident = getSentinelIncidents(incidentId)[0]; // getSentinelIncidents returns an array of one element
     incident.properties.status = properties.status;
+    if(incident.properties.status.toLowerCase() == 'closed') {
+        incident.properties.classification = properties.classification; //Sentinel requires reason when closing incident
+        incident.properties.classificationComment = properties.classificationComment;
+    }
     incident.properties.severity = properties.severity;
     incident.properties.owner.userPrincipalName = properties.owner.userPrincipalName;
     
-    if(incident.properties.labels.length >= 0) {
+    if(incident.properties.labels.length > 0) {
         incident.properties.labels = incident.properties.labels.concat(properties.labels);
-        // Dedup array
+        // Dedup array -> to solve
         incident.properties.labels = incident.properties.labels.filter(function (item,index){
             return (incident.properties.labels.indexOf(item) == index);
         });
@@ -27,6 +31,7 @@ function updateSentinelIncident (incidentId, properties) {
         incident.properties.labels = properties.labels;
     }
     
+
     var body = {
         "etag": incident.etag,
         "properties": incident.properties
@@ -44,13 +49,13 @@ function updateSentinelIncident (incidentId, properties) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-21 15:23:05</sys_created_on>
         <sys_id>bbaae6522f71a010aab2d5ccf699b6e1</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>updateSentinelIncident</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_bbaae6522f71a010aab2d5ccf699b6e1</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-21 20:39:15</sys_updated_on>
+        <sys_updated_on>2021-01-26 16:08:10</sys_updated_on>
     </sys_script_include>
 </record_update>
