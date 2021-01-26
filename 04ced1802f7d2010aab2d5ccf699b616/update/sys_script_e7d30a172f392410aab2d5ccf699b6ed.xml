@@ -41,7 +41,7 @@
             
             if (Object.keys(changes).length > 0) { //if at least one change
 
-                if(changes.hasOwnProperty('severitySentinel')) { //status must be updated in Sentinel
+                if(changes.hasOwnProperty('severitySentinel')) { //severity must be updated in Sentinel
 
                     switch(myObj.impact.toString()) {
                         case '3': 
@@ -61,7 +61,7 @@
                     
                 }
                 
-                if(changes.hasOwnProperty('statusSentinel')) { //severity must be updated in Sentinel
+                if(changes.hasOwnProperty('statusSentinel')) { //status must be updated in Sentinel
                     switch(myObj.state.toString()) {
                         case '1': 
                             properties.status = 'New'; 
@@ -79,7 +79,6 @@
                                     properties.status = 'Closed';
                                     properties.classification = 'Undetermined';
                                     properties.classificationComment = 'Incident marked as Closed in ServiceNow';
-                                    log('Code: ' + myObj.close_code + '\nReason: ' + myObj.close_notes + 'Obj:\n' + JSON.stringify(myObj));
                                     break;                
                         }
                         default: 
@@ -89,15 +88,25 @@
                 }
                 
                 if(changes.hasOwnProperty('ownerSentinel')) { //owner must be updated in Sentinel
-                    properties.owner.userPrincipalName = myObj.assigned_to.email.toString();
+                    if(!myObj.assigned_to.email.toString()) {
+                        properties.owner = null;
+                    }
+                    else {
+                        properties.owner.userPrincipalName = myObj.assigned_to.email.toString();
+                    }
                 }
-                var httpStatus = updateSentinelIncident(myObj.correlation_id, properties);
+                
+                var httpStatus = updateSentinelIncident(myObj.correlation_id, properties); //update Sentinel incident
 
                 if(httpStatus == 200) {
-                    log('Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                }
+                else if(httpStatus == 409) {
+                    httpStatus = updateSentinelIncident(myObj.correlation_id, properties);
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
                 }
                 else {
-                    log('Sentinel Incident ' + incident[0].properties.incidentNumber + ' update fails. Code: ' + httpStatus + '\nChanges: ' + JSON.stringify(changes));
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' update fails. Code: ' + httpStatus + '\nChanges: ' + JSON.stringify(changes));
                 }
 
             }
@@ -105,7 +114,7 @@
     }
     catch (ex) {
         var message = ex.message;
-        log('ERROR updating incident ' + current.number + ' - ' + message);
+        log('ERROR updating incident (business rule)' + current.number + ' - ' + message);
             }
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -114,7 +123,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e7d30a172f392410aab2d5ccf699b6ed</sys_id>
-        <sys_mod_count>35</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>update_changes_to_sentinel</sys_name>
         <sys_overrides/>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
@@ -122,7 +131,7 @@
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_e7d30a172f392410aab2d5ccf699b6ed</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-26 09:43:34</sys_updated_on>
+        <sys_updated_on>2021-01-26 19:46:52</sys_updated_on>
         <template/>
         <when>async</when>
     </sys_script>

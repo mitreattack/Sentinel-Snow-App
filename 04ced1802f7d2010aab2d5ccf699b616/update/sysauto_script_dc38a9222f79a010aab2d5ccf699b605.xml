@@ -55,7 +55,9 @@
                 }
 
                 if(changes.hasOwnProperty('ownerSentinel')) {
-                    if(modifiedIncidents[i].properties.owner.userPrincipalName) {myObj.assigned_to.email = modifiedIncidents[i].properties.owner.userPrincipalName;}
+                    if(modifiedIncidents[i].properties.owner.userPrincipalName) {
+                        myObj.assigned_to = modifiedIncidents[i].properties.owner.userPrincipalName;
+                    }
                 }
                 
                 try {
@@ -121,14 +123,14 @@
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-22 05:15:02</sys_created_on>
         <sys_id>dc38a9222f79a010aab2d5ccf699b605</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>updateChangedIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_dc38a9222f79a010aab2d5ccf699b605</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-26 16:07:54</sys_updated_on>
+        <sys_updated_on>2021-01-26 19:55:09</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>

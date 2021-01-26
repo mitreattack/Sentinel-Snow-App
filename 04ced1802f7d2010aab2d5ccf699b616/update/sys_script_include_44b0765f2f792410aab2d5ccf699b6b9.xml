@@ -33,7 +33,7 @@ function compareChanges(sentinelIncident, snowIncident) {
         changes.severitySentinel = sentinelIncident.severity;
         changes.severitySnow = snowIncident.impact.toString();
     }
-    if((sentinelIncident.owner.userPrincipalName != snowIncident.assigned_to.email) && (snowIncident.assigned_to.email)) {
+    if(sentinelIncident.owner.userPrincipalName != snowIncident.assigned_to.email.toString()) {
         changes.ownerSentinel = sentinelIncident.owner.userPrincipalName; 
         changes.ownerSnow = snowIncident.assigned_to.email.toString();
     }
@@ -44,13 +44,13 @@ function compareChanges(sentinelIncident, snowIncident) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-24 18:23:07</sys_created_on>
         <sys_id>44b0765f2f792410aab2d5ccf699b6b9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>compareChanges</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_44b0765f2f792410aab2d5ccf699b6b9</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-25 19:43:50</sys_updated_on>
+        <sys_updated_on>2021-01-26 18:30:58</sys_updated_on>
     </sys_script_include>
 </record_update>
