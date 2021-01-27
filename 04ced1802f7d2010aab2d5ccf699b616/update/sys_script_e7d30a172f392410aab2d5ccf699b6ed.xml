@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>incident</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="incident">stateVALCHANGES^ORimpactVALCHANGES^ORassigned_toVALCHANGES^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="false" field="impact" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="assigned_to" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>update_changes_to_sentinel</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous) {
+
+    try {
+            var myObj = current;
+            var incident = getSentinelIncidents(myObj.correlation_id);
+            var changes = compareChanges(incident[0].properties, myObj); //changes is an object with all changes
+            var properties = incident[0].properties;
+            
+            if (Object.keys(changes).length > 0) { //if at least one change
+
+                if(changes.hasOwnProperty('severitySentinel')) { //severity must be updated in Sentinel
+
+                    switch(myObj.impact.toString()) {
+                        case '3': 
+                            properties.severity = 'Low'; 
+                            break;
+                        case '2': 
+                            properties.severity = 'Medium'; 
+                            break;
+                        case '1': 
+                            properties.severity = 'High'; 
+                            break;
+                        default: 
+                            properties.severity = 'Medium'; 
+                            break;
+                    }
+
+                    
+                }
+                
+                if(changes.hasOwnProperty('statusSentinel')) { //status must be updated in Sentinel
+                    switch(myObj.state.toString()) {
+                        case '1': 
+                            properties.status = 'New'; 
+                            break;
+                        case '2': 
+                            properties.status = 'Active'; 
+                            break;
+                        case '6': { 
+                                    properties.status = 'Closed'; 
+                                    properties.classification = 'Undetermined';
+                                    properties.classificationComment = 'Incident marked as Resolved in ServiceNow';
+                                    break;                
+                                }
+                        case '7': { 
+                                    properties.status = 'Closed';
+                                    properties.classification = 'Undetermined';
+                                    properties.classificationComment = 'Incident marked as Closed in ServiceNow';
+                                    break;                
+                        }
+                        default: 
+                            properties.status = 'Active';
+                            break;
+                    }
+                }
+                
+                if(changes.hasOwnProperty('ownerSentinel')) { //owner must be updated in Sentinel
+                    if(!myObj.assigned_to.email.toString()) {
+                        properties.owner = null;
+                    }
+                    else {
+                        properties.owner.userPrincipalName = myObj.assigned_to.email.toString();
+                    }
+                }
+                
+                var httpStatus = updateSentinelIncident(myObj.correlation_id, properties); //update Sentinel incident
+
+                if(httpStatus == 200) {
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                }
+                else if(httpStatus == 409) {
+                    httpStatus = updateSentinelIncident(myObj.correlation_id, properties);
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' has been updated after snow updates.\nChanges: ' + JSON.stringify(changes));
+                }
+                else {
+                    log(httpStatus + ' - Sentinel Incident ' + incident[0].properties.incidentNumber + ' update fails. Code: ' + httpStatus + '\nChanges: ' + JSON.stringify(changes));
+                }
+
+            }
+
+    }
+    catch (ex) {
+        var message = ex.message;
+        log('ERROR updating incident (business rule)' + current.number + ' - ' + message);
+            }
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
+        <sys_created_on>2021-01-24 15:07:40</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e7d30a172f392410aab2d5ccf699b6ed</sys_id>
+        <sys_mod_count>38</sys_mod_count>
+        <sys_name>update_changes_to_sentinel</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
+        <sys_update_name>sys_script_e7d30a172f392410aab2d5ccf699b6ed</sys_update_name>
+        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
+        <sys_updated_on>2021-01-26 19:46:52</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=e7d30a172f392410aab2d5ccf699b6ed"/>
+</record_update>

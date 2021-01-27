@@ -9,13 +9,21 @@
         <name>buildRESTMessageV2</name>
         <script><![CDATA[//---------------------------------------------------------------
 // This function build the ServiceNow REST message to get the Sentinel incients
-function buildRESTMessageV2(skipToken, method, filter, incidentId) {
+function buildRESTMessageV2(skipToken, method, filter, incidentId, body) {
 
     // Get app properties for API call
     var subscription = gs.getProperty('x_556309_microsoft.subscription');
     var resourceGroup = gs.getProperty('x_556309_microsoft.resourceGroup');
     var workspace = gs.getProperty('x_556309_microsoft.workspace');
     var apiVersion = gs.getProperty('x_556309_microsoft.apiVersion');
+
+    if(incidentId)  {
+        if(incidentId.includes('/entities')) {
+            apiVersion = '2019-01-01-preview';
+        }
+    }
+  
+
     // Compose API endpoint
     var endpoint =  'https://management.azure.com/subscriptions/' + subscription + '/resourceGroups/' + resourceGroup + '/providers/Microsoft.OperationalInsights/workspaces/' + workspace + '/providers/Microsoft.SecurityInsights/incidents?';
     var token = getAccessToken();
@@ -42,6 +50,9 @@ function buildRESTMessageV2(skipToken, method, filter, incidentId) {
     if(skipToken) { 
         request.setQueryParameter('$skipToken', skipToken);
     }
+    if(body) {
+        request.setRequestBody(JSON.stringify(body));
+    }
     
     request.setEndpoint(endpoint);
     request.setRequestHeader('Content-Type','application/json;odata=verbose');
@@ -59,13 +70,13 @@ function buildRESTMessageV2(skipToken, method, filter, incidentId) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-19 14:01:20</sys_created_on>
         <sys_id>b6c400752f352010aab2d5ccf699b6a9</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>buildRESTMessageV2</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_b6c400752f352010aab2d5ccf699b6a9</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-19 16:20:54</sys_updated_on>
+        <sys_updated_on>2021-01-26 16:25:18</sys_updated_on>
     </sys_script_include>
 </record_update>

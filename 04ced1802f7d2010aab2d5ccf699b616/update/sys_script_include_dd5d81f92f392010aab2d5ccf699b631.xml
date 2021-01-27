@@ -11,13 +11,14 @@
 // Get comments to incident
 function getIncidentComments (incidentId, lastSync) {
 
+    var hasNext = false;
+    var comments = [];
+    var filteredComments = [];
     var filter = null;
     if(lastSync) {
 
         filter = '(properties/createdTimeUtc gt ' + lastSync + ')';
     }
-    var hasNext = false;
-    var comments = [];
 
     // Prepare request
     incidentId = incidentId + '/comments';
@@ -52,9 +53,13 @@ function getIncidentComments (incidentId, lastSync) {
     }while (hasNext);
     
     // Filters out the comments created by SNOW. This app adds "(Work notes)" when adding a comment to Sentinel
-    var filteredComments = comments.filter(function (comment) {
+    filteredComments = comments.filter(function (comment) {
         return comment.properties.message.toLowerCase().indexOf('(work notes)') === -1;
     });
+    filteredComments = filteredComments.filter(function (comment) {
+        return comment.properties.message.toLowerCase().indexOf('[code]') === -1;
+    });
+    
 
     // Sort comments by creation date
     if(filteredComments) {
@@ -74,13 +79,13 @@ function getIncidentComments (incidentId, lastSync) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-19 19:18:08</sys_created_on>
         <sys_id>dd5d81f92f392010aab2d5ccf699b631</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>getIncidentComments</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_dd5d81f92f392010aab2d5ccf699b631</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-19 20:43:12</sys_updated_on>
+        <sys_updated_on>2021-01-23 08:01:40</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -9,13 +9,20 @@
         <name>getSentinelIncidents</name>
         <script><![CDATA[//---------------------------------------------------------------
 // Return Sentinel incidents, based on the filter
-function getSentinelIncidents (id) {
+function getSentinelIncidents (id, operation) {
 
     var filter = null;
+    var lastSync = null;
+
     if(!id) {
-        // update last sync time only for full query, not for single incident by id
-        updateLastSync('newIncidentsLastSync');
-        filter = '(properties/createdTimeUtc gt 2021-01-13T20:00:00.0Z)'; //to change to use table prop
+        if(operation === 'update') {
+            lastSync = getLastSync('modifiedIncidentsLastSync'); //returns last sync from sentinelUtils table
+            filter = '(properties/lastModifiedTimeUtc gt '+ lastSync + ')';
+        }
+        else { // searching for new incidents
+            lastSync = getLastSync('newIncidentsLastSync');
+            filter = '(properties/createdTimeUtc gt '+ lastSync + ')';
+        }
     }
     var hasNext = false;
     var incidents = [];
@@ -64,13 +71,13 @@ function getSentinelIncidents (id) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-19 16:54:27</sys_created_on>
         <sys_id>1f6c20f52ff52010aab2d5ccf699b6a9</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>getSentinelIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_1f6c20f52ff52010aab2d5ccf699b6a9</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-19 16:54:27</sys_updated_on>
+        <sys_updated_on>2021-01-26 16:08:37</sys_updated_on>
     </sys_script_include>
 </record_update>

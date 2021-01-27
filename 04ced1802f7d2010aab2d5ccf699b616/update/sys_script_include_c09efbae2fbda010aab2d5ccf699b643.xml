@@ -2,45 +2,49 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_556309_microsoft.updateLastSync</api_name>
+        <api_name>x_556309_microsoft.getLastSync</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
-        <name>updateLastSync</name>
+        <description>Returns the last creation or update sync from the sentinelUtils table&#13;
+</description>
+        <name>getLastSync</name>
         <script><![CDATA[//---------------------------------------------------------------
-// Updates newIncidentsLastSync
-function updateLastSync(property, date) {
+// Returns the last creation or update sync from the sentinelUtils table
+function getLastSync(property) {
 
-	var myObj = new GlideRecord('x_556309_microsoft_systemutils');
-	var now = (new Date()).toISOString();
-	if(date) {
-		now = date;
-	}
+    var myObj = new GlideRecord('x_556309_microsoft_systemutils');
+    var lastSync;
 
 	myObj.addQuery('property', property);
 	myObj.query();
 
 	if(myObj.next()) {            
-		log('Updating ' + property + '\nPrevious value: ' + myObj.value + '\nNew value: ' + now);
-		myObj.value = now;
-		myObj.update();
+		lastSync = myObj.value;
+		if(!lastSync) { // if value not populated, go back 30 days ago
+			var date = new Date();
+			date.setDate(date.getDate() - 30);
+			lastSync = date.toISOString();
+			updateLastSync(property, lastSync);
+		}
 
 	}
 	else {
 		log('System property not found!');
-	}
+    }
+    
+    return lastSync;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
-        <sys_created_on>2021-01-19 09:07:32</sys_created_on>
-        <sys_id>c38143652f712010aab2d5ccf699b6af</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>updateLastSync</sys_name>
+        <sys_created_on>2021-01-22 16:08:32</sys_created_on>
+        <sys_id>c09efbae2fbda010aab2d5ccf699b643</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>getLastSync</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
-        <sys_update_name>sys_script_include_c38143652f712010aab2d5ccf699b6af</sys_update_name>
+        <sys_update_name>sys_script_include_c09efbae2fbda010aab2d5ccf699b643</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-26 16:03:45</sys_updated_on>
+        <sys_updated_on>2021-01-26 16:01:57</sys_updated_on>
     </sys_script_include>
 </record_update>

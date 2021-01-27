@@ -44,7 +44,7 @@
         <update_guid_history>95e9ed88db7d2010d60342ad9dbfbf3f:-1496690256,adc929887a7d201098143a7961a88fad:1032122089</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Sentinel API profile">f70ba10c2f7d2010aab2d5ccf699b6d7</sys_audit_delete>
+        <sys_audit_delete display_value="">f70ba10c2f7d2010aab2d5ccf699b6d7</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-14 10:58:24</sys_created_on>
