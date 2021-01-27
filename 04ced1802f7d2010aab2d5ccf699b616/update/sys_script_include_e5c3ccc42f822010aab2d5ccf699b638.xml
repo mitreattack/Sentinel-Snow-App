@@ -7,10 +7,9 @@
         <client_callable>false</client_callable>
         <description/>
         <name>getIncidentEntities</name>
-        <script><![CDATA[
-//---------------------------------------------------------------
-// Get entities to incident
-function getIncidentEntities (incidentId) {
+        <script><![CDATA[//---------------------------------------------------------------
+// Get incident entities 
+function getIncidentEntities (incidentId, format) {
 
     var hasNext = false;
     var filter = null;
@@ -49,26 +48,61 @@ function getIncidentEntities (incidentId) {
     }while (hasNext);
     
     // Compose entities objects
-    var entitiesList = entities.map(function(entity) {
-       return {
-           "type": entity.kind,
-           "details": entity.properties
-       };
-    });
+    try {
+        if(entities.length > 0){
+			//log('entities: ' + JSON.stringify(entities));
+            var entitiesList = entities.map(function(entity) {
+                return {
+                    "type": entity.kind,
+                    "details": entity.properties
+                };
+            });
 
-    return entitiesList;
+            if(format.toLowerCase() === 'html') {
+                return entitiesToHtmlTable(entitiesList);
+            }
+            else {
+                return entitiesList;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+    catch (ex) {
+        var message = ex.message;
+        log('ERROR getIncidentEntities: ' + message);
+    }
+}
+
+    
+
+function entitiesToHtmlTable (entities) {
+    
+    var htmlTable = '<table style="width: 80%; font-family: arial, sans-serif; border-collapse: collapse"><thead><tr style="border: 1px solid black"><th style="background-color: #dddddd;border: 1px solid #dddddd;text-align: left;padding: 8px;">EntityType</th><th style="background-color: #dddddd;border: 1px solid #dddddd;text-align: left;padding: 8px;">EntityDetails</th></tr></thead><tbody></tbody>';
+    
+    for (var i = 0; i < entities.length; i++) {
+        var tr = '<tr style="border: 1px solid black"><td style="border: 1px solid #dddddd; text-align: left; padding: 8px">';
+
+        tr += entities[i].type + '</td><td style="border: 1px solid #dddddd; text-align: left; padding: 8px">' + JSON.stringify(entities[i].details).replace(',', '<br>').replace('{', '').replace('}', '') + '</td></tr>';
+        htmlTable += tr;
+    }
+
+    htmlTable += '</tbody></table>'; //closing table
+
+    return htmlTable;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-26 13:43:20</sys_created_on>
         <sys_id>e5c3ccc42f822010aab2d5ccf699b638</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>getIncidentEntities</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_e5c3ccc42f822010aab2d5ccf699b638</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-26 16:09:13</sys_updated_on>
+        <sys_updated_on>2021-01-27 12:50:24</sys_updated_on>
     </sys_script_include>
 </record_update>
