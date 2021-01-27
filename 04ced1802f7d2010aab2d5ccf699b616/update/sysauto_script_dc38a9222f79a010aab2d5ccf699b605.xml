@@ -48,9 +48,14 @@
 
                 if(changes.hasOwnProperty('statusSentinel')) { 
                     switch(modifiedIncidents[i].properties.status.toLowerCase()) {
-                        case 'new': myObj.state = 1; break;
-                        case 'active': myObj.state = 2; break;
-                        case 'closed': myObj.state = 7; break;                        
+                        case 'new': myObj.incident_state = 1; break;
+                        case 'active': myObj.incident_state = 2; break;
+                        case 'closed': {
+                                    myObj.incident_state = 6;
+                                    myObj.close_code = 'Closed/Resolved By Caller';
+                                    myObj.close_notes = 'Incident closed in Sentinel';
+                                    break;                
+                                }                     
                     }
                 }
 
@@ -61,7 +66,7 @@
                 }
                 
                 try {
-                    myObj.setWorkflow(false);
+                    myObj.setWorkflow(false);;
                     myObj.update();
                     updatedIncidents++;
                     log('Incident ' + myObj.number + ' has been updated\nChanges: ' + JSON.stringify(changes));
@@ -123,14 +128,14 @@
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-22 05:15:02</sys_created_on>
         <sys_id>dc38a9222f79a010aab2d5ccf699b605</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>62</sys_mod_count>
         <sys_name>updateChangedIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_dc38a9222f79a010aab2d5ccf699b605</sys_update_name>
         <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-26 19:55:09</sys_updated_on>
+        <sys_updated_on>2021-01-27 05:46:06</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
