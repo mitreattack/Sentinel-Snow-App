@@ -12,12 +12,13 @@
         <run_as_tz/>
         <run_dayofmonth>1</run_dayofmonth>
         <run_dayofweek>1</run_dayofweek>
-        <run_period>1970-01-01 00:05:00</run_period>
+        <run_period>1970-01-01 00:01:00</run_period>
         <run_start>2021-01-22 05:10:40</run_start>
         <run_time>1969-12-31 23:00:00</run_time>
         <run_type>periodically</run_type>
         <script><![CDATA[function updateChangedIncidents (modifiedIncidents, modifiedLastSync) {
     
+    var incidentTable = gs.getProperty('x_556309_microsoft.incidentTableName');
     var updatedIncidents = 0;
     var addedComments;
     var myObj;
@@ -27,7 +28,7 @@
     for (var i = 0; i < modifiedIncidents.length; i++) {
 
         addedComments = 0;
-        myObj = new GlideRecord('incident');
+        myObj = new GlideRecord(incidentTable);
         myObj.addQuery('correlation_id', modifiedIncidents[i].name);
         myObj.query();
 
@@ -128,14 +129,14 @@
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-22 05:15:02</sys_created_on>
         <sys_id>dc38a9222f79a010aab2d5ccf699b605</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>updateChangedIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_dc38a9222f79a010aab2d5ccf699b605</sys_update_name>
-        <sys_updated_by>sebmolendijk@hotmail.com</sys_updated_by>
-        <sys_updated_on>2021-01-27 12:21:02</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-02-09 15:28:47</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
