@@ -21,6 +21,7 @@
 function createIncidents (incidents) {
 
     var callerId = gs.getProperty('x_556309_microsoft.callerId');
+    var incidentTable = gs.getProperty('x_556309_microsoft.incidentTableName');
     var createdIncidents = 0;
     var incidentSeverity = 1;
     var incidentStatus = 1;
@@ -28,7 +29,7 @@ function createIncidents (incidents) {
 
     for (var i = 0; i < incidents.length; i++) {
 
-        myObj = new GlideRecord('incident');
+        myObj = new GlideRecord(incidentTable);
 
         myObj.addQuery('correlation_id', incidents[i].name);
         myObj.query();
@@ -82,19 +83,20 @@ function createIncidents (incidents) {
             }
 
             // Add Sentinel incident url link in work notes
-            myObj = new GlideRecord('incident');
+            myObj = new GlideRecord(incidentTable);
             myObj.get(record);
             myObj.setWorkflow(false);
             myObj.work_notes = "[code]<a href='" + incidents[i].properties.incidentUrl + "' target='_blank'>Azure Sentinel incident link</a>[/code]";
             myObj.update();
 
-			// Add incident alerts details
+            // Add incident alerts details
 			var html = getIncidentAlerts(incidents[i].name, 'html');
             if(html) {
                 myObj.setWorkflow(false);
                 myObj.work_notes = '[code]' + html + '[/code]';
                 myObj.update();
             }
+
             // Add incident entities to Snow
             var html = getIncidentEntities(incidents[i].name, 'html');
             if(html) {
@@ -175,14 +177,14 @@ catch (ex) {
         <sys_created_by>sebmolendijk@hotmail.com</sys_created_by>
         <sys_created_on>2021-01-14 11:22:24</sys_created_on>
         <sys_id>531e258c2f7d2010aab2d5ccf699b6f3</sys_id>
-        <sys_mod_count>303</sys_mod_count>
+        <sys_mod_count>307</sys_mod_count>
         <sys_name>createNewIncidents</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy/>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sysauto_script_531e258c2f7d2010aab2d5ccf699b6f3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-01 12:01:17</sys_updated_on>
+        <sys_updated_on>2021-02-09 15:28:01</sys_updated_on>
         <time_zone/>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
