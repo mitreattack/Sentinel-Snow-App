@@ -7,8 +7,7 @@
         <client_callable>false</client_callable>
         <description/>
         <name>getIncidentAlerts</name>
-        <script><![CDATA[
-//---------------------------------------------------------------
+        <script><![CDATA[//---------------------------------------------------------------
 // Get incident alerts 
 function getIncidentAlerts (incidentId, format) {
 
@@ -91,7 +90,7 @@ function getIncidentAlerts (incidentId, format) {
 
 function alertsToHtmlTable (alerts) {
     
-    var htmlTable = '<table style="width: 80%; font-family: arial, sans-serif; border-collapse: collapse"><thead><tr style="border: 1px solid black">';
+    var htmlTable = '<table style="width: 100%; font-family: arial, sans-serif; border-collapse: collapse"><thead><tr style="border: 1px solid black">';
     htmlTable += '<th style=" background-color: #dddddd; border: 1px solid #dddddd; text-align: left; padding: 8px;">Name</th>';
     htmlTable += '<th style="background-color: #dddddd; border: 1px solid #dddddd; text-align: left; padding: 8px;">Status</th>';
     htmlTable += '<th style="background-color: #dddddd; border: 1px solid #dddddd; text-align: left; padding: 8px;">Severity</th>';
@@ -130,13 +129,13 @@ function alertsToHtmlTable (alerts) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-29 16:42:04</sys_created_on>
         <sys_id>67490c0d2f422010b57ebab62799b639</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>getIncidentAlerts</sys_name>
         <sys_package display_value="Microsoft Azure Sentinel" source="x_556309_microsoft">04ced1802f7d2010aab2d5ccf699b616</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Microsoft Azure Sentinel">04ced1802f7d2010aab2d5ccf699b616</sys_scope>
         <sys_update_name>sys_script_include_67490c0d2f422010b57ebab62799b639</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-03 14:14:03</sys_updated_on>
+        <sys_updated_on>2021-02-10 12:57:45</sys_updated_on>
     </sys_script_include>
 </record_update>
